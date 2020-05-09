@@ -21,26 +21,15 @@ function disconnect {
 pkill -SIGINT openconnect > /dev/null
 }
 
-function gui {
-python3 /opt/svpn/svpn.py
-}
-
 function help {
     echo ""
     echo "version : $version"
     echo "svpn help using 'openconnect' easier."
     echo "you can edit this bash file and replace username, password, server and domain with your own ones, so easily connect / disconnect server with just a command. file is located at /usr/bin/svpn."
     echo ""
-    echo "  attentions : "
-    echo "       1. there is no order for options or abilities! feel free!"
-    echo "       2. except -g (for GUI), other commands must run with sudo (as root)."
-    echo ""
     echo "  abilities : "
     echo "      -c      connecting server using username/password in file, or specified by user."
     echo "      -d      disconnecting server."
-    echo "      -g      lunching GUI."
-    echo "              GUI had been developed with Python 3.6.3 and tkinter. this option will run 'python3 /opt/svpn/svpn.py' command."
-    echo "              attention that running this command with sudo will cause getting error."
     echo ""
     echo "  options : "
     echo "      -s      server address."
@@ -54,7 +43,7 @@ function help {
 }
 
 
-while getopts ":s:n:u:p: :c :d :g :h" opt; do
+while getopts ":s:n:u:p: :c :d :h" opt; do
   case $opt in
     s)
 		server="$OPTARG" >&2
@@ -74,9 +63,6 @@ while getopts ":s:n:u:p: :c :d :g :h" opt; do
     d)
 		job="d" >&2
       ;;
-    g)
-		job="g" >&2
-      ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       exit 1
@@ -94,9 +80,6 @@ case $job in
 	;;
 	d)
 		disconnect
-	;;
-	g)
-		gui
 	;;
 	h)
 	    help
