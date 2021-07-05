@@ -1,8 +1,6 @@
-## svpn
+## svpn 0.6.1
 
 an openconnect wrapper.
-
-version: 0.6
 
 ### Cloning
 

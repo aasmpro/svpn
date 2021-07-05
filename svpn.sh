@@ -1,5 +1,5 @@
 #!/bin/bash
-version=0.6
+version=0.6.1
 job=h
 
 account=''
